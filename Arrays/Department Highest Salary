@@ -1,0 +1,12 @@
+SELECT 
+      d.name as Department,
+      e.name as Employee,
+      e.salary as Salary
+FROM employee e
+JOIN department d
+ON e.departmentId = d.id
+WHERE e.salary = (
+    SELECT MAX(e2.salary)
+    FROM employee e2
+    where e2.departmentId = e.departmentId
+);
